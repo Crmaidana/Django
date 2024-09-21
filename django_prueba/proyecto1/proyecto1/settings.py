@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path 
-
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'apps.modulo1',
 ]
 
 MIDDLEWARE = [
@@ -72,11 +74,18 @@ WSGI_APPLICATION = 'proyecto1.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+load_dotenv()# sino agregamos este llamado no funciona
+NAME_DB= os.getenv('NAME_DB')
+USER_DB= os.getenv('USER_MYSQL')
+PASSWORD_DB= os.getenv('PASSWORD_MYSQL')
 
 DATABASES = {
     'default': {
-       'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR/ 'db.sqlite3',
+       'ENGINE': 'django.db.backends.mysql',
+        'NAME': NAME_DB, #configuramos para nuestra bd y en mysql
+        'USER':USER_DB,
+        'PASSWORD': PASSWORD_DB,
+        'PORT':'3306'
     }
 }
 
