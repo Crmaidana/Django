@@ -1,0 +1,4 @@
+{
+    "python.analysis.autoImportCompletions": true,
+    "python.defaultInterpreterPath": "C:\\Desktop\\Django\\entornos\\prueba1\\Scripts\\python.exe"
+}
