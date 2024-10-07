@@ -3,9 +3,10 @@ from django.urls import reverse_lazy # type: ignore
 from django.views.generic.edit import CreateView, UpdateView, DeleteView # type: ignore
 from django.views.generic.list import ListView # type: ignore
 from .models import Categoria, Libro # type: ignore
+from django.contrib.auth.mixins import LoginRequiredMixin # type: ignore
 # Create your views here.
 # ------- Categorias -----------------
-class CrearCategoria(CreateView):
+class CrearCategoria(LoginRequiredMixin, CreateView):
     model = Categoria
     fields = ['nombre']
     template_name = 'libros/agregar_categoria.html'
@@ -19,7 +20,7 @@ class ActualizarCategoria(UpdateView):
     
 class EliminarCategoria(DeleteView):
     model = Categoria
-    template_name = 'genericos/confirma_eliminar.html'
+    template_name = 'generic/confirma_eliminar.html'
     success_url = reverse_lazy('index')
 # ------- Libros -----------------
 class CrearLibro(CreateView):
@@ -34,7 +35,7 @@ class ActualizarLibro(UpdateView):
     success_url = reverse_lazy('index')
 class EliminarLibro(DeleteView):
     model = Libro
-    template_name = 'genericos/confirma_eliminar.html'
+    template_name = 'generic/confirma_eliminar.html'
     success_url = reverse_lazy('index')
 class ListarLibros(ListView):
     model = Libro

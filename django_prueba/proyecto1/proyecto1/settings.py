@@ -12,12 +12,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path 
 from dotenv import load_dotenv   # type: ignore
-
+from django.urls import reverse_lazy # type: ignore
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+# ------ LOGIN -----
+LOGIN_URL = reverse_lazy('apps.blog_auth:iniciar_sesion')
+LOGIN_REDIRECT_URL = reverse_lazy('index')
+LOGOUT_REDIRECT_URL = reverse_lazy('index')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-2c2(x37%g4r6zdtq=^_a_kd($o8!fy5dqt@(_q^2=x0x3vkoe0'
@@ -40,7 +42,7 @@ INSTALLED_APPS = [
     
     'apps.modulo1',
     'apps.libros',
-    
+        
 ]
 
 MIDDLEWARE = [
@@ -129,8 +131,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS= [BASE_DIR / 'static']
 
-MEDIA = '/media'
-MEDIA_ROOT =  BASE_DIR / 'media',
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

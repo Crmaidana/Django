@@ -14,7 +14,7 @@ class Libro(models.Model):
     categoria=models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True)
     descripcion=models.TextField()
     fecha_agregado=models.DateTimeField(auto_now_add=True)
-    imagen=models.ImageField(null=True,upload_to='libros' ,blank=True,default='libros/libro_default.png')
+    imagen=models.ImageField(null=True,upload_to='libros' ,blank=True,default='libros/libro_default.jpg')
     
     def __str__(self):
         return self.titulo
